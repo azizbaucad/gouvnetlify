@@ -199,7 +199,9 @@ export const TabsPanelItemVerticalOptimized = ({ tabs, w, h, fSize }) => {
   );
 };
 
-export const ShowPanel = ({ panels }) => {
+
+export const ShowPanel = ({ panels = [] }) => {
+  // CustomTab component for styling each tab
   const CustomTab = ({ title }) => (
     <Box
       ml={4}
@@ -231,15 +233,30 @@ export const ShowPanel = ({ panels }) => {
   return (
     <Tabs variant="unstyled">
       <TabList>
-        {panels.map((panel, index) => (
-          <CustomTab key={index} title={panel.title} />
-        ))}
+        {panels.length > 0 ? (
+          panels.map((panel, index) => (
+            <CustomTab key={index} title={panel.title} />
+          ))
+        ) : (
+          <Box p={4} color="gray.500">
+            No panels available
+          </Box>
+        )}
       </TabList>
       <TabPanels>
-        {panels.map((panel, index) => (
-          <TabPanel key={index}>{panel.content}</TabPanel>
-        ))}
+        {panels.length > 0 ? (
+          panels.map((panel, index) => (
+            <TabPanel key={index}>{panel.content}</TabPanel>
+          ))
+        ) : (
+          <TabPanel>
+            <Box p={4} color="gray.500">
+              No content to display
+            </Box>
+          </TabPanel>
+        )}
       </TabPanels>
     </Tabs>
   );
 };
+
