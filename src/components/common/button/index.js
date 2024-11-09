@@ -1,4 +1,5 @@
-import { Button } from '@chakra-ui/button';
+
+import { Button } from '@chakra-ui/react';
 import { routes } from '@theme';
 import { useRouter } from 'next/navigation';
 import { FiArrowLeft, FiArrowRight } from 'react-icons/fi';
