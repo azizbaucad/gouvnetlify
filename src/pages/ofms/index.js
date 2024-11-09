@@ -59,10 +59,11 @@ import {
 import { elements, scales } from 'chart.js';
 import { formatNumber } from '@utils/formater';
 import { Line, Pie } from 'react-chartjs-2';
-import { SenegalMap } from '@components/common/Items/map_Items/mapItems';
+//import { SenegalMap } from '@components/common/Items/map_Items/mapItems';
 import { ShowPanel } from '@components/common/tabs';
 import { PieDoug } from '@components/common/charts/piecharts';
 import { BrushBarChart } from '@components/common/charts/brushbarchart/brushchart';
+import { SenegalGoogleMap } from '@components/common/Items/map_Items/mapItemsGoogle';
 //import { SenegalMap } from '@components/common/Items/map_Items/mapItems';
 //import dynamic from 'next/dynamic';
 //const SenegalMap = dynamic(() => import('@components/common/Items/map_Items/mapItems'), {ssr: false });
@@ -447,7 +448,6 @@ export default function DescFormPage(props) {
     const height = window.innerHeight;
   } */
 
-
   return (
     <DashboardLayout activeMenu={'account-ofms'}>
       <Stack
@@ -554,7 +554,9 @@ export default function DescFormPage(props) {
               colSpan={{ base: 1, md: 2 }}
             >
               <Box width={'100%'} height={'90%'} p={0}>
-                <SenegalMap />
+                {/*<SenegalMap />*/}
+                <SenegalGoogleMap />
+                
               </Box>
             </GridItem>
             <GridItem
