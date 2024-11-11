@@ -221,10 +221,10 @@ export default function DescFormPage(props) {
 
   //Kpis for project
   const kpis = [
-    { label: 'Budget', value: '60%', change: '6.5', isPositive: true },
-    { label: 'Taux restant', value: '20%', change: '-2.78', isPositive: false },
+    { label: 'Budget consommé', value: '60%', change: '6.5', isPositive: true },
+    { label: 'Taux de réalisation', value: '20%', change: '2.78', isPositive: true },
     {
-      label: 'Taux consommé',
+      label: 'Durée consommée',
       value: '40%',
       change: '3.72',
       isPositive: true,

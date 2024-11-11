@@ -178,7 +178,7 @@ export const SenegalGoogleMap = () => {
                 <br />
                 Nombre de projets: {activeRegion.region.projects}
                 <br />
-                Budget alloué: {activeRegion.region.consumptionRate}
+                Budget consommé: {activeRegion.region.consumptionRate}
                 <Box width="200px" height="200px" mt={2}>
                   <PieDoug data={activeRegion.region.chartData} />
                 </Box>
