@@ -11,6 +11,11 @@ import {
   Stack,
   Text,
   VStack,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  IconButton,
 } from '@chakra-ui/react';
 import { DashboardLayout } from '@components/layout/dashboard';
 import { colors, direction, gird, hightlightStatus } from '@theme';
@@ -22,7 +27,13 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { getElement } from 'pages/api/global';
 import { getLastWeekList } from '@utils/services/date';
-import { AiFillHome } from 'react-icons/ai';
+import {
+  AiFillHome,
+  AiFillDelete,
+  AiFillEdit,
+  AiFillEye,
+  AiOutlineMore,
+} from 'react-icons/ai';
 import { TiCloudStorage, TiCloudStorageOutline } from 'react-icons/ti';
 import { DMenuButton } from '@components/common/menu_button';
 import { BsPlusLg } from 'react-icons/bs';
@@ -67,6 +78,27 @@ import { ButtonItem } from '@components/common/Items/buttonItem';
 
 export default function DescFormPage(props) {
   //Define Columns for Projects
+  const router = useRouter();
+  const [descData, setDescData] = useState();
+  const week = router.query.week;
+  const [selectedWeek, setSelectedWeek] = useState(week);
+
+  //Define the status lis
+  const [selectedStatus, setSelectedStatus] = useState('all');
+  const { realizes, difficults, coordinationPoint } = hightlightStatus;
+  const statusList = [realizes, difficults, coordinationPoint];
+
+   //Handle View Details
+   const handleViewDetails = () => {
+    router.push('dashboard/details/' + selectedWeek);
+  };
+
+  //Create handle button Click projet
+  const handleButtonClick = () => {
+    router.push('projet/form/' + selectedWeek);
+  };
+  
+
   const columns = [
     {
       accessorKey: 'nomProjet',
@@ -76,11 +108,6 @@ export default function DescFormPage(props) {
     {
       accessorKey: 'responsable',
       header: 'Responsable Projet',
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: 'retard',
-      header: 'Retard (jours)',
       cell: (info) => info.getValue(),
     },
     {
@@ -99,46 +126,51 @@ export default function DescFormPage(props) {
       cell: (info) => `${info.getValue()}%`,
     },
     {
-      accessorKey: 'dateInitialeDebut',
-      header: 'Date Initiale Début',
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: 'dateInitialeFin',
-      header: 'Date Initiale Fin',
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: 'dateEffectiveDebut',
-      header: 'Date Effective Début',
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: 'dateEffectiveFin',
-      header: 'Date Effective Fin',
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: 'budgetInitial',
-      header: 'Budget Initial (€)',
-      cell: (info) => info.getValue(),
-    },
-    {
-      accessorKey: 'duree',
-      header: 'Durée (jours)',
-      cell: (info) => info.getValue(),
-    },
-    {
       accessorKey: 'etat',
       header: 'État',
       cell: (info) => info.getValue(),
+    },
+    {
+      header: 'Actions',
+      cell: ({ row }) => (
+        <HStack spacing={3} justify={'end'} align={'start'}>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              icon={<AiOutlineMore size={24} />}
+              variant="ghost"
+              aria-label="Actions"
+            />
+            <MenuList>
+              <MenuItem
+                icon={<AiFillEye size={14} />}
+                onClick={handleViewDetails}
+              >
+                View details
+              </MenuItem>
+              <MenuItem
+                icon={<AiFillEdit size={14} />}
+                onClick={handleViewDetails}
+              >
+                Edit
+              </MenuItem>
+              <MenuItem
+                icon={<AiFillDelete size={14} />}
+                onClick={handleViewDetails}
+              >
+                Delete
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </HStack>
+      ),
     },
   ];
   //Add Table Data
   const [data, setData] = useState([
     {
       nomProjet: 'Projet Alpha',
-      responsable: 'John Doe',
+      responsable: 'M. Ndiaye',
       retard: 2,
       livraison: '2024-12-01',
       budgetConsomme: 20000,
@@ -153,7 +185,67 @@ export default function DescFormPage(props) {
     },
     {
       nomProjet: 'Projet Beta',
-      responsable: 'Jane Smith',
+      responsable: 'M. Ndiaye',
+      retard: 0,
+      livraison: '2024-10-15',
+      budgetConsomme: 15000,
+      tauxExecution: 100,
+      dateInitialeDebut: '2024-03-01',
+      dateInitialeFin: '2024-08-30',
+      dateEffectiveDebut: '2024-03-01',
+      dateEffectiveFin: '2024-08-30',
+      budgetInitial: 15000,
+      duree: 183,
+      etat: 'Terminé',
+    },
+    {
+      nomProjet: 'Projet Alpha',
+      responsable: 'M. Ndiaye',
+      retard: 2,
+      livraison: '2024-12-01',
+      budgetConsomme: 20000,
+      tauxExecution: 80,
+      dateInitialeDebut: '2024-01-01',
+      dateInitialeFin: '2024-06-30',
+      dateEffectiveDebut: '2024-01-05',
+      dateEffectiveFin: '2024-07-05',
+      budgetInitial: 25000,
+      duree: 180,
+      etat: 'En cours',
+    },
+    {
+      nomProjet: 'Projet Beta',
+      responsable: 'M. Ndiaye',
+      retard: 0,
+      livraison: '2024-10-15',
+      budgetConsomme: 15000,
+      tauxExecution: 100,
+      dateInitialeDebut: '2024-03-01',
+      dateInitialeFin: '2024-08-30',
+      dateEffectiveDebut: '2024-03-01',
+      dateEffectiveFin: '2024-08-30',
+      budgetInitial: 15000,
+      duree: 183,
+      etat: 'Terminé',
+    },
+    {
+      nomProjet: 'Projet Alpha',
+      responsable: 'M. Ndiaye',
+      retard: 2,
+      livraison: '2024-12-01',
+      budgetConsomme: 20000,
+      tauxExecution: 80,
+      dateInitialeDebut: '2024-01-01',
+      dateInitialeFin: '2024-06-30',
+      dateEffectiveDebut: '2024-01-05',
+      dateEffectiveFin: '2024-07-05',
+      budgetInitial: 25000,
+      duree: 180,
+      etat: 'Terminé',
+    },
+    {
+      nomProjet: 'Projet Beta',
+      responsable: 'M. Ndiaye',
       retard: 0,
       livraison: '2024-10-15',
       budgetConsomme: 15000,
@@ -169,21 +261,6 @@ export default function DescFormPage(props) {
     // Add more data as needed...
   ]);
 
-  const router = useRouter();
-  const [descData, setDescData] = useState();
-  const week = router.query.week;
-  const [selectedWeek, setSelectedWeek] = useState(week);
-
-  //Define the status lis
-  const [selectedStatus, setSelectedStatus] = useState('all');
-  const { realizes, difficults, coordinationPoint } = hightlightStatus;
-  const statusList = [realizes, difficults, coordinationPoint];
-
-  //Create handle button Click projet
-  const handleButtonClick = () => {
-    router.push('projet/form/' + selectedWeek)
-  }
-
   const panels = [
     {
       title: 'Projet',
@@ -191,12 +268,15 @@ export default function DescFormPage(props) {
         <TableItem
           data={data}
           columns={columns}
-          ButtonComponent={() => <ButtonItem title="Ajouter un projet" onClick={handleButtonClick} />}
+          ButtonComponent={() => (
+            <ButtonItem title="Ajouter un projet" onClick={handleButtonClick} />
+          )}
         />
       ),
     },
     { title: 'Programme', content: 'Contenu Programme' },
     { title: 'Plan', content: 'Contenu Plan' },
+    { title: 'Action', content: 'Contenu Action' },
     { title: 'Utilisateur', content: 'Content Utilisateur' },
   ];
 
@@ -328,8 +408,8 @@ export default function DescFormPage(props) {
               subtitleColor={'#404245'}
               subtitleSize={16}
               icon={<HiHome size={24} color="#fff" />}
-              title={'Dashboard'}
-              subtitle={'/ Accueil'}
+              title={'Back Office'}
+              //subtitle={'Ajout formulaire'}
             />
           </Box>
         </HStack>
@@ -349,7 +429,7 @@ export default function DescFormPage(props) {
               rowSpan={0}
               colSpan={{ base: 1, md: 4 }} // Prenez toute la largeur sur mobile et bureau
               //bg="#e2e8f0"
-              bg='gray.300'
+              bg="gray.300"
               //p={4}
               borderRadius="lg"
               //justifyContent={'start'}
@@ -364,7 +444,11 @@ export default function DescFormPage(props) {
                 <AddViewForm title={'Ajouter un plan'} icon={FaPlus} />
                 <AddViewForm title={'Ajouter un utilisateur'} icon={FaPlus} />
                 <AddViewForm title={'Ajouter une directive'} icon={FaPlus} />
-                <AddViewForm title={'Ajouter un Fichier'} icon={FaPlus} />
+                {/* <AddViewForm title={'Ajouter une action'} icon={FaPlus} /> */}
+                <AddViewForm
+                  title={'Ajouter le Fichier action'}
+                  icon={FaPlus}
+                />
               </SimpleGrid>
             </GridItem>
 

@@ -127,7 +127,7 @@ export const TabsPanelItemVertical = ({
               {tab4}
             </Box>
           </TabPanel>
-          <TabPanel>
+          <TabPanel>  
             <Box w="380px" h="380px">
               {tab5}
             </Box>

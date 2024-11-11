@@ -34,7 +34,7 @@ module.exports = {
       light: '#48bb78',
       regular: '#000',
       regular_green_orange: '#9999ff',
-      teal_sombre: '#3c8484',
+      teal_sombre: '#47b199',
       gray_base: '#d7dce6',
       regular_orange: '#ff7900',
       gray: '#f1f5f9',

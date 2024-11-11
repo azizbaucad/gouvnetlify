@@ -42,7 +42,7 @@ export const AvatarMenu = () => {
           <PopoverArrow />
           <PopoverBody>
             <Stack>
-              <Box
+              {/* <Box
                 onClick={() => {
                   router.push(routes.pages.dashboard.user);
                 }}
@@ -50,9 +50,11 @@ export const AvatarMenu = () => {
                 {'Profile'}
               </Box>
 
-              <StackDivider bgColor={colors.gray.regular} />
+              <StackDivider bgColor={colors.gray.regular} /> */}
 
-              <Box onClick={signOut}>Sign Out</Box>
+              <Box onClick={() => {
+                  router.push(routes.pages.auth.login);
+                }}>Se Déconnecter</Box>
             </Stack>
           </PopoverBody>
         </PopoverContent>

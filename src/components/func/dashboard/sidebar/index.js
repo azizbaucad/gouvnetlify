@@ -22,25 +22,32 @@ import { CgRowFirst } from 'react-icons/cg';
 import { MdOutlineAdminPanelSettings } from 'react-icons/md';
 import { HiHome, HiOutlineHome, HiShoppingBag, HiUser } from 'react-icons/hi2';
 import { FcLineChart } from 'react-icons/fc';
+import { useEffect, useState } from 'react';
 
 export const Sidebar = ({ activeLink }) => {
+  const [userAuthToken, setUserAuthToken] = useState(null);
+
+  useEffect(() => {
+    //verifier si localStorage est disponible cote client
+    const token = localStorage.getItem('fakeAuthToken');
+    setUserAuthToken(token);
+  }, []);
+
   const menus = [
     {
-      name: 'Dashboard',
+      name: 'Présidence',
       icon: <HiHome fontSize={20} color="#fff" mt={1} />,
       active: 'null',
       url: null,
       subMenus: [
-        { name: 'Présidence', active: 'ofms', url: routes.pages.ofms.initial },
-        /* {
-          name: 'Back Office',
-          active: 'dashboard',
-          url: routes.pages.dashboard.initial,
-        }, */
-
-        /* { name: 'Primature', active: 'dmgp', url: routes.pages.dmgp.initial }, */
+        { name: 'Synthèse', active: 'ofms', url: routes.pages.ofms.initial },
+        { name: 'IGE', active: 'dmgp', url: routes.pages.dmgp.initial },
+        {
+          name: 'ITIE',
+          active: 'desc',
+          url: routes.pages.desc.initial,
+        },
       ],
-      
     },
     {
       name: 'BO',
@@ -56,7 +63,6 @@ export const Sidebar = ({ activeLink }) => {
 
         /* { name: 'Primature', active: 'dmgp', url: routes.pages.dmgp.initial }, */
       ],
-      
     },
     /*   {
       name: 'Présidence',
@@ -81,6 +87,17 @@ export const Sidebar = ({ activeLink }) => {
     }, */
   ];
 
+  // Filter menu in token function
+  const filteredMenus = menus.filter((menu) => {
+    if (userAuthToken === 'fakeToken123' && menu.name === 'Présidence') {
+      return true;
+    }
+    if (userAuthToken === 'fakeTokenBOO' && menu.name === 'BO') {
+      return true;
+    }
+    return false;
+  });
+
   return (
     <Box h={'100%'}>
       <VStack
@@ -104,7 +121,7 @@ export const Sidebar = ({ activeLink }) => {
           ml={0}
           p={2}
         >
-          {menus.map((menu, i) => (
+          {filteredMenus.map((menu, i) => (
             <>
               <Box key={i} w={'100%'}>
                 <DashboardLink

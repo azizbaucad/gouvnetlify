@@ -236,7 +236,7 @@ export const FormSubmit = ({
         }}
         
         onClick={handleSubmit}
-        colorScheme={colorScheme || colors.colorScheme.orange}
+        colorScheme={colorScheme || '#59b8a3'}
         {...{
           borderWidth,
           borderRadius,

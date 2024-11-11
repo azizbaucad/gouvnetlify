@@ -29,6 +29,7 @@ import { Fragment } from 'react';
 import { AiFillHome } from 'react-icons/ai';
 import { FiArrowRight } from 'react-icons/fi';
 import { ProjectForm, PlanForm, ContactForm, InstitutionForm, StructureForm, ActiviteForm, EquipeForm, ProgrammeForm, DirectiveForm, ProjetForm, ActionForm } from './formSpecific';
+import { ProjetFormTest } from './formSpecific/projectForm';
 
 
 export const DescActionForm = (props) => {
@@ -36,7 +37,7 @@ export const DescActionForm = (props) => {
 }
 
 export const DescProjetForm = (props) => {
-  return <ProjetForm />;
+  return <ProjetFormTest />;
 }
 
 export const DescPlanForm = (props) => {

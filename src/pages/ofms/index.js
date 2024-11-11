@@ -221,18 +221,18 @@ export default function DescFormPage(props) {
 
   //Kpis for project
   const kpis = [
-    { label: 'Budget', value: '427', change: '3.15', isPositive: true },
-    { label: 'Durée', value: '34', change: '-2.78', isPositive: false },
+    { label: 'Budget', value: '60%', change: '6.5', isPositive: true },
+    { label: 'Taux restant', value: '20%', change: '-2.78', isPositive: false },
     {
-      label: 'Taux de conso.',
-      value: '40.5%',
-      change: '5.14',
+      label: 'Taux consommé',
+      value: '40%',
+      change: '3.72',
       isPositive: true,
     },
   ];
 
   const piechartData = {
-    labels: ['Taux consommé', 'Taux alloué'],
+    labels: ['Taux consommé', 'Taux restant'],
     values: [20, 10],
   };
 
@@ -368,7 +368,7 @@ export default function DescFormPage(props) {
 
   const panels = [
     {
-      title: 'Taux de conso.',
+      title: 'Budget',
       content: (
         <PieDoug
           data={piechartData}
@@ -501,7 +501,7 @@ export default function DescFormPage(props) {
               bg="gray.300"
               borderRadius="lg"
             >
-              <SimpleGrid columns={{ base: 2, md: 3, lg: 4 }} spacing={'2'}>
+              <SimpleGrid columns={{ base: 2, md: 3, lg: 5 }} spacing={'2'}>
                 <FollowerCount
                   title={<TagTitleKpiCard title="Projet" />}
                   kpi={1000}
@@ -523,6 +523,12 @@ export default function DescFormPage(props) {
                 <FollowerCount
                   title={<TagTitleKpiCard title="Directive" />}
                   kpi={4000}
+                  vplus={'Voir plus'}
+                  onViewDetails={handleViewDetails}
+                />
+                <FollowerCount
+                  title={<TagTitleKpiCard title="Action" />}
+                  kpi={5000}
                   vplus={'Voir plus'}
                   onViewDetails={handleViewDetails}
                 />

@@ -180,7 +180,6 @@ export const FollowerCount = ({ title, kpi, unit, onViewDetails, vplus }) => {
       p={4}
       w="100%"
       bg="#f1f5f9"
-      //bg="#f1f5f9"
     >
       <HStack spacing={4}>
         <Box
@@ -188,57 +187,50 @@ export const FollowerCount = ({ title, kpi, unit, onViewDetails, vplus }) => {
           p={2}
           borderRadius="full"
           display="flex"
-          alignItems="start"
-          justifyContent="start"
+          alignItems="center"
+          justifyContent="center"
         >
           <Icon as={FaUserPlus} color="#f1f5f9" boxSize={4} />
         </Box>
-        <Box>
-          <Text fontSize="md" fontWeight="400" color="gray.700">
-            {title}
-          </Text>
+        <Box w="100%">
+          <HStack justifyContent="space-between" w="100%">
+            <Text fontSize="md" fontWeight="400" color="gray.700">
+              {title}
+            </Text>
+            <HStack
+              rounded="lg"
+              bg="gray.200"
+              p={1}
+              cursor="pointer"
+              onClick={onViewDetails}
+              spacing={1}
+            >
+              <Text fontSize="10" fontWeight="500" color="red.500" isTruncated>
+                {vplus}
+              </Text>
+              <Icon as={FaEye} color="red.500" boxSize={3} />
+            </HStack>
+          </HStack>
+
           <Text fontWeight="bold" fontSize="1.4rem">
             {kpi}
             <Text as="span" fontWeight={400} fontSize="1rem" ml={1}>
               {unit}
             </Text>
-            
           </Text>
-          
-          <HStack justifyContent="space-between" spacing={10} width="50%">
-            <Text
-              fontSize="12"
-              fontWeight="500"
-              color="green.500"
-              whiteSpace="nowrap"
-            >
-             <Text as='span' color='black'>Taux conso =</Text> 40% <Icon as={FaArrowUp}  />
-            </Text>
 
-            <HStack
-              rounded="lg"
-              bg="gray.200"
-              p={1}
-              maxW="100%"
-              cursor="pointer"
-              onClick={onViewDetails}
-            >
-              <Text
-                fontSize="10"
-                fontWeight="500"
-                color="red.500"
-                isTruncated
-              >
-                {vplus}
-              </Text>
-              <Icon as={FaEye} color='red.500' boxSize={3} />
-            </HStack>
-          </HStack>
+          <Text fontSize="12" fontWeight="500" color="green.500">
+            <Text as="span" color="black">
+              Taux conso =
+            </Text>{' '}
+            40% <Icon as={FaArrowUp} />
+          </Text>
         </Box>
       </HStack>
     </Stack>
   );
 };
+
 
 export const AddForm = ({ title }) => {
   return (

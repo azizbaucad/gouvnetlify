@@ -111,8 +111,8 @@ export default function DescFormPage(props) {
               subtitleColor={'#404245'}
               subtitleSize={16}
               icon={<HiHome size={24} color="#fff" />}
-              title={'Dashboard'}
-              subtitle={'/ Synthese'}
+              title={'Back Office'}
+              subtitle={'/ details projet'}
             />
           </Box>
         </HStack>

@@ -207,7 +207,7 @@ export default function DescFormPage(props) {
   const [data, setData] = useState([
     {
       nomProjet: 'Projet Alpha',
-      responsable: 'John Doe',
+      responsable: 'M. Ndiaye',
       livraison: '2024-10-15',
       budgetConsomme: 15000,
       tauxExecution: 100,
@@ -215,7 +215,7 @@ export default function DescFormPage(props) {
     },
     {
       nomProjet: 'Projet Beta',
-      responsable: 'Jane Smith',
+      responsable: 'M. Ndiaye',
       livraison: '2024-11-15',
       budgetConsomme: 25000,
       tauxExecution: 200,
@@ -223,7 +223,7 @@ export default function DescFormPage(props) {
     },
     {
       nomProjet: 'Projet Beta',
-      responsable: 'Jane Smith',
+      responsable: 'M. Ndiaye',
       livraison: '2024-11-15',
       budgetConsomme: 25000,
       tauxExecution: 200,
@@ -231,7 +231,7 @@ export default function DescFormPage(props) {
     },
     {
       nomProjet: 'Projet Alpha',
-      responsable: 'John Doe',
+      responsable: 'M. Ndiaye',
       livraison: '2024-10-15',
       budgetConsomme: 15000,
       tauxExecution: 100,
@@ -239,7 +239,7 @@ export default function DescFormPage(props) {
     },
     {
       nomProjet: 'Projet Beta',
-      responsable: 'Jane Smith',
+      responsable: 'M. Ndiaye',
       livraison: '2024-11-15',
       budgetConsomme: 25000,
       tauxExecution: 200,
@@ -247,7 +247,7 @@ export default function DescFormPage(props) {
     },
     {
       nomProjet: 'Projet Beta',
-      responsable: 'Jane Smith',
+      responsable: 'M. Ndiaye',
       livraison: '2024-11-15',
       budgetConsomme: 25000,
       tauxExecution: 200,
@@ -305,15 +305,6 @@ export default function DescFormPage(props) {
               <MenuItem icon={<AiFillDelete size={14}/>} onClick={handleViewDetails}>Delete</MenuItem>
             </MenuList>
           </Menu>
-          {/*  <Tooltip label="Views Details" aria-label="View Details Tooltip">
-            <IconButton
-              size="sm"
-              colorScheme="teal"
-              icon={<AiFillEye />}
-              onClick={handleViewDetails}
-              aria-label="View Details"
-            />
-          </Tooltip> */}
         </HStack>
       ),
     },
