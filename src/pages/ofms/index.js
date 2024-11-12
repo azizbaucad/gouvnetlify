@@ -427,6 +427,10 @@ export default function DescFormPage(props) {
       title: 'Programme',
       content: <NameKpiWithChart kpis={kpis} panels={panelsPro} />,
     },
+    {
+      title: 'Action',
+      content: <NameKpiWithChart kpis={kpis} panels={panelsPro} />,
+    },
   ];
 
   const panelsTitlesV2 = [
